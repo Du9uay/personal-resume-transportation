@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>视觉设计师 | 非对称作品集</title>
+    
+    <!-- SEO优化 -->
+    <meta name="description" content="专业视觉设计师作品集，10年品牌设计经验">
+    <meta name="keywords" content="视觉设计,品牌设计,UI设计,创意总监">
+    
+    <!-- 字体 -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    
+    <!-- 主题样式 -->
+    <link rel="stylesheet" href="muted_elegant_theme.css">
+    
+    <style>
+        /* 非对称高级布局 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--black-soft);
+            color: var(--gray-soft);
+            overflow-x: hidden;
+            position: relative;
+            background-image: 
+                var(--gradient-mesh),
+                var(--noise);
+            background-attachment: fixed;
+        }
+
+        /* 非对称网格系统 */
+        .asymmetric-grid {
+            display: grid;
+            grid-template-columns: repeat(24, 1fr);
+            gap: 0;
+        }
+
+        /* 导航栏 - 非对称布局 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: var(--space-4) 0;
+            background: linear-gradient(to bottom, 
+                var(--black-soft) 0%, 
+                transparent 100%);
+            backdrop-filter: blur(20px);
+            transition: all var(--duration-normal) var(--ease-smooth);
+        }
+
+        .navbar.scrolled {
+            background: var(--glass-dark);
+            box-shadow: var(--shadow-subtle);
+        }
+
+        .nav-content {
+            display: grid;
+            grid-template-columns: repeat(24, 1fr);
+            align-items: center;
+            padding: 0 var(--space-8);
+        }
+
+        .logo {
+            grid-column: span 3;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.25rem, 2vw, 1.5rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, var(--white-soft), var(--gray-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            grid-column: 18 / -1;
+            display: flex;
+            gap: var(--space-8);
+            list-style: none;
+            justify-content: flex-end;
+        }
+
+        .nav-link {
+            color: var(--gray-warm);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 400;
+            transition: all var(--duration-fast) var(--ease-smooth);
+            position: relative;
+            padding: var(--space-2) 0;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--red-soft);
+            transition: width var(--duration-normal) var(--ease-smooth);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* 英雄区域 - 非对称分割 */
+        .hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: repeat(24, 1fr);
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            right: -10%;
+            width: 60%;
+            height: 120%;
+            background: radial-gradient(ellipse at center, 
+                var(--red-deepest) 0%, 
+                transparent 60%);
+            transform: rotate(-15deg);
+            opacity: 0.6;
+        }
+
+        .hero-content {
+            grid-column: 3 / 16;
+            padding: var(--space-20) 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-visual {
+            grid-column: 17 / 23;
+            height: 600px;
+            position: relative;
+            transform: translateY(80px);
+        }
+
+        .hero-visual::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, 
+                var(--red-deeper) 0%, 
+                var(--gray-dark) 50%, 
+                var(--black-warm) 100%);
+            transform: skewY(-5deg);
+            box-shadow: var(--shadow-strong);
+        }
+
+        .hero-subtitle {
+            font-size: clamp(0.875rem, 1.5vw, 1rem);
+            font-weight: 400;
+            color: var(--red-warm);
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            margin-bottom: var(--space-3);
+            margin-left: var(--space-2);
+            opacity: 0.9;
+        }
+
+        .hero-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            font-weight: 700;
+            line-height: 0.95;
+            margin-bottom: var(--space-8);
+            letter-spacing: -0.03em;
+        }
+
+        .hero-title-line1 {
+            display: block;
+            color: var(--gray-white);
+            transform: translateX(-4px);
+        }
+
+        .hero-title-line2 {
+            display: block;
+            background: linear-gradient(135deg, 
+                var(--red-soft) 0%, 
+                var(--gray-lighter) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-left: var(--space-16);
+            margin-top: var(--space-2);
+        }
+
+        .hero-description {
+            font-size: clamp(1rem, 1.8vw, 1.2rem);
+            color: var(--gray-pale);
+            max-width: 480px;
+            margin-bottom: var(--space-10);
+            line-height: 1.7;
+            margin-left: var(--space-4);
+            opacity: 0.85;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: var(--space-6);
+            margin-left: var(--space-4);
+        }
+
+        .btn {
+            padding: var(--space-4) var(--space-8);
+            font-size: 1rem;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: all var(--duration-normal) var(--ease-smooth);
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--red-deep), var(--red-muted));
+            color: var(--white-soft);
+            box-shadow: var(--shadow-red-soft);
+            transform: skewX(-10deg);
+        }
+
+        .btn-primary span {
+            display: inline-block;
+            transform: skewX(10deg);
+        }
+
+        .btn-primary:hover {
+            transform: skewX(-10deg) translateY(-2px);
+            box-shadow: var(--shadow-red-medium);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--gray-pale);
+            border: 1px solid var(--gray-medium);
+        }
+
+        .btn-outline:hover {
+            background: var(--gray-dark);
+            border-color: var(--gray-light);
+            color: var(--white-soft);
+        }
+
+        /* 关于部分 - 极端非对称 */
+        .about {
+            padding: var(--space-32) 0;
+            position: relative;
+        }
+
+        .about-container {
+            display: grid;
+            grid-template-columns: repeat(24, 1fr);
+            align-items: start;
+            position: relative;
+        }
+
+        .about-image {
+            grid-column: 2 / 9;
+            aspect-ratio: 3/4;
+            background: linear-gradient(135deg, var(--red-deepest), var(--black-warm));
+            box-shadow: var(--shadow-strong);
+            position: relative;
+            transform: translateY(var(--space-16));
+        }
+
+        .about-image::after {
+            content: '';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            bottom: 20px;
+            left: 20px;
+            border: 1px solid var(--red-muted);
+            opacity: 0.3;
+        }
+
+        .about-content {
+            grid-column: 11 / 22;
+            padding: var(--space-8) 0;
+        }
+
+        .section-label {
+            font-size: 0.875rem;
+            color: var(--red-soft);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: var(--space-3);
+            opacity: 0.8;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            font-weight: 600;
+            margin-bottom: var(--space-6);
+            color: var(--gray-white);
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--gray-pale);
+            margin-bottom: var(--space-8);
+            max-width: 540px;
+            opacity: 0.9;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: 2fr 3fr 2fr;
+            gap: var(--space-6);
+            margin-top: var(--space-12);
+            max-width: 600px;
+        }
+
+        .stat-item {
+            padding: var(--space-4);
+            background: linear-gradient(135deg, 
+                var(--highlight-gray) 0%, 
+                transparent 100%);
+            border-left: 2px solid var(--red-muted);
+            transition: all var(--duration-normal) var(--ease-smooth);
+        }
+
+        .stat-item:nth-child(2) {
+            transform: translateY(var(--space-4));
+        }
+
+        .stat-item:nth-child(3) {
+            transform: translateY(var(--space-8));
+        }
+
+        .stat-item:hover {
+            background: var(--highlight-red-subtle);
+            border-left-color: var(--red-soft);
+            transform: translateX(8px) translateY(var(--inherit));
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--red-warm);
+            margin-bottom: var(--space-2);
+            letter-spacing: -0.02em;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--gray-lighter);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* 作品集 - 混沌网格 */
+        .portfolio {
+            padding: var(--space-32) var(--space-8);
+            background: linear-gradient(180deg, 
+                transparent 0%, 
+                var(--black-warm) 100%);
+        }
+
+        .portfolio-header {
+            display: grid;
+            grid-template-columns: repeat(24, 1fr);
+            margin-bottom: var(--space-20);
+            align-items: end;
+        }
+
+        .portfolio-header-content {
+            grid-column: 3 / 14;
+        }
+
+        .portfolio-filter {
+            grid-column: 19 / 23;
+            display: flex;
+            gap: var(--space-4);
+            justify-content: flex-end;
+        }
+
+        .filter-btn {
+            padding: var(--space-2) var(--space-4);
+            background: transparent;
+            border: 1px solid var(--gray-medium);
+            color: var(--gray-lighter);
+            cursor: pointer;
+            transition: all var(--duration-fast) var(--ease-smooth);
+            font-size: 0.875rem;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--red-muted);
+            border-color: var(--red-muted);
+            color: var(--white-soft);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-auto-rows: 320px;
+            gap: var(--space-4);
+        }
+
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            background: var(--gray-dark);
+            cursor: pointer;
+        }
+
+        /* 超级非对称网格分布 */
+        .portfolio-item:nth-child(1) { 
+            grid-column: 1 / 8; 
+            grid-row: span 2;
+            transform: translateY(-40px);
+        }
+        .portfolio-item:nth-child(2) { 
+            grid-column: 8 / 11; 
+            grid-row: span 1;
+        }
+        .portfolio-item:nth-child(3) { 
+            grid-column: 11 / 13; 
+            grid-row: span 1;
+            transform: translateY(60px);
+        }
+        .portfolio-item:nth-child(4) { 
+            grid-column: 8 / 13; 
+            grid-row: span 1;
+            transform: translateY(-20px);
+        }
+        .portfolio-item:nth-child(5) { 
+            grid-column: 1 / 5; 
+            grid-row: span 1;
+        }
+        .portfolio-item:nth-child(6) { 
+            grid-column: 5 / 13; 
+            grid-row: span 2;
+            transform: translateY(-80px);
+        }
+
+        .portfolio-item::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, 
+                var(--black-soft) 0%, 
+                transparent 60%);
+            opacity: 0;
+            transition: opacity var(--duration-normal) var(--ease-smooth);
+        }
+
+        .portfolio-item:hover::before {
+            opacity: 1;
+        }
+
+        .portfolio-item:hover {
+            transform: scale(0.98) translateY(var(--inherit));
+        }
+
+        .portfolio-info {
+            position: absolute;
+            bottom: var(--space-6);
+            left: var(--space-6);
+            right: var(--space-6);
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all var(--duration-normal) var(--ease-smooth);
+        }
+
+        .portfolio-item:hover .portfolio-info {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .portfolio-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--white-soft);
+            margin-bottom: var(--space-2);
+            letter-spacing: -0.01em;
+        }
+
+        .portfolio-category {
+            font-size: 0.875rem;
+            color: var(--red-soft);
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* 技能 - 散点分布 */
+        .skills {
+            padding: var(--space-32) var(--space-8);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skills::before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: var(--gradient-radial-red);
+            opacity: 0.3;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
+        }
+
+        .skills-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .skills-header {
+            max-width: 600px;
+            margin-bottom: var(--space-20);
+            margin-left: var(--space-16);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: var(--space-3);
+            position: relative;
+        }
+
+        .skill-card {
+            padding: var(--space-5) var(--space-6);
+            background: var(--glass-dark);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--gray-dark);
+            transition: all var(--duration-normal) var(--ease-elastic);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 不规则技能卡片大小 */
+        .skill-card:nth-child(3n) {
+            grid-column: span 2;
+        }
+
+        .skill-card:nth-child(5n) {
+            transform: translateY(-20px);
+        }
+
+        .skill-card:nth-child(7n) {
+            transform: translateY(20px);
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, 
+                var(--red-muted), 
+                transparent, 
+                var(--red-muted));
+            opacity: 0;
+            transition: opacity var(--duration-normal) var(--ease-smooth);
+            z-index: -1;
+        }
+
+        .skill-card:hover::before {
+            opacity: 1;
+            animation: borderRotate 3s linear infinite;
+        }
+
+        @keyframes borderRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .skill-card:hover {
+            transform: translateY(-4px) scale(1.05);
+            background: var(--highlight-red-subtle);
+            border-color: transparent;
+        }
+
+        .skill-name {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--gray-white);
+            margin-bottom: var(--space-2);
+        }
+
+        .skill-level {
+            font-size: 0.875rem;
+            color: var(--gray-lighter);
+            opacity: 0.8;
+        }
+
+        .skill-progress {
+            margin-top: var(--space-3);
+            height: 2px;
+            background: var(--gray-dark);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, 
+                var(--red-muted) 0%, 
+                var(--red-soft) 100%);
+            transition: width 1s var(--ease-smooth);
+        }
+
+        /* 联系 - 对角分割 */
+        .contact {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: repeat(24, 1fr);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 30%;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                transparent 49%, 
+                var(--gray-dark) 50%);
+            z-index: 0;
+        }
+
+        .contact-info {
+            grid-column: 2 / 11;
+            padding: var(--space-20) 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-form-section {
+            grid-column: 13 / 23;
+            padding: var(--space-20) 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(3rem, 5vw, 4.5rem);
+            font-weight: 700;
+            margin-bottom: var(--space-8);
+            line-height: 0.9;
+            letter-spacing: -0.03em;
+        }
+
+        .contact-title-line1 {
+            display: block;
+            color: var(--gray-white);
+        }
+
+        .contact-title-line2 {
+            display: block;
+            background: linear-gradient(135deg, 
+                var(--red-soft) 0%, 
+                var(--gray-lighter) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-left: var(--space-12);
+            margin-top: var(--space-2);
+        }
+
+        .contact-text {
+            font-size: 1.2rem;
+            color: var(--gray-pale);
+            line-height: 1.6;
+            margin-bottom: var(--space-12);
+            max-width: 400px;
+            opacity: 0.9;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-6);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
+            color: var(--gray-lighter);
+            font-size: 1.1rem;
+            transition: all var(--duration-fast) var(--ease-smooth);
+            cursor: pointer;
+            padding-left: var(--space-4);
+            border-left: 2px solid transparent;
+        }
+
+        .contact-item:hover {
+            color: var(--red-soft);
+            transform: translateX(12px);
+            border-left-color: var(--red-muted);
+        }
+
+        .contact-form {
+            width: 100%;
+            max-width: 500px;
+            transform: translateY(-40px);
+        }
+
+        .form-group {
+            margin-bottom: var(--space-6);
+            position: relative;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.875rem;
+            color: var(--gray-lighter);
+            margin-bottom: var(--space-2);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-left: var(--space-2);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: var(--space-4);
+            background: var(--black-soft);
+            border: none;
+            border-bottom: 1px solid var(--gray-medium);
+            color: var(--white-soft);
+            font-size: 1rem;
+            transition: all var(--duration-fast) var(--ease-smooth);
+            font-family: inherit;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-bottom-color: var(--red-soft);
+            background: var(--black-warm);
+        }
+
+        .form-input::placeholder {
+            color: var(--gray-medium);
+            opacity: 0.6;
+        }
+
+        textarea.form-input {
+            resize: vertical;
+            min-height: 120px;
+            border: 1px solid var(--gray-medium);
+        }
+
+        .btn-submit {
+            width: auto;
+            padding: var(--space-4) var(--space-12);
+            background: linear-gradient(135deg, var(--red-deep), var(--red-medium));
+            color: var(--white-soft);
+            border: none;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--duration-normal) var(--ease-smooth);
+            position: relative;
+            overflow: hidden;
+            transform: skewX(-10deg);
+            margin-left: auto;
+            display: block;
+        }
+
+        .btn-submit span {
+            display: inline-block;
+            transform: skewX(10deg);
+        }
+
+        .btn-submit:hover {
+            transform: skewX(-10deg) translateY(-2px);
+            box-shadow: var(--shadow-red-medium);
+        }
+
+        /* 页脚 - 分层设计 */
+        .footer {
+            padding: var(--space-16) var(--space-8);
+            background: var(--black-pure);
+            position: relative;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(24, 1fr);
+            align-items: center;
+        }
+
+        .footer-text {
+            grid-column: 3 / 12;
+            color: var(--gray-medium);
+            font-size: 0.875rem;
+            opacity: 0.8;
+        }
+
+        .footer-links {
+            grid-column: 16 / 22;
+            display: flex;
+            gap: var(--space-6);
+            justify-content: flex-end;
+        }
+
+        .footer-link {
+            color: var(--gray-light);
+            text-decoration: none;
+            transition: color var(--duration-fast) var(--ease-smooth);
+        }
+
+        .footer-link:hover {
+            color: var(--red-soft);
+        }
+
+        /* 装饰元素 */
+        .decoration-line {
+            position: absolute;
+            width: 1px;
+            height: 200px;
+            background: linear-gradient(to bottom, 
+                transparent 0%, 
+                var(--red-muted) 50%, 
+                transparent 100%);
+            opacity: 0.3;
+        }
+
+        .decoration-dot {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--red-soft);
+            border-radius: 50%;
+            opacity: 0.6;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-column: 2 / 20;
+            }
+
+            .hero-visual {
+                display: none;
+            }
+
+            .about-container {
+                display: block;
+                padding: 0 var(--space-8);
+            }
+
+            .about-image {
+                width: 100%;
+                max-width: 400px;
+                margin-bottom: var(--space-12);
+                transform: none;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: repeat(6, 1fr);
+            }
+
+            .portfolio-item {
+                grid-column: span 3 !important;
+                grid-row: span 1 !important;
+                transform: none !important;
+            }
+
+            .contact::before {
+                display: none;
+            }
+
+            .contact-info,
+            .contact-form-section {
+                grid-column: 2 / 24;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-content {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: clamp(2.5rem, 10vw, 3.5rem);
+            }
+
+            .hero-title-line2 {
+                margin-left: var(--space-4);
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .skill-card:nth-child(3n) {
+                grid-column: span 1;
+            }
+
+            .contact-title {
+                font-size: clamp(2rem, 8vw, 3rem);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-content">
+            <div class="logo">视觉设计师</div>
+            <ul class="nav-links">
+                <li><a href="#hero" class="nav-link">首页</a></li>
+                <li><a href="#about" class="nav-link">关于</a></li>
+                <li><a href="#portfolio" class="nav-link">作品</a></li>
+                <li><a href="#skills" class="nav-link">技能</a></li>
+                <li><a href="#contact" class="nav-link">联系</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 英雄区域 -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-subtitle">创意视觉设计</div>
+            <h1 class="hero-title">
+                <span class="hero-title-line1">突破边界</span>
+                <span class="hero-title-line2">定义未来</span>
+            </h1>
+            <p class="hero-description">
+                十年磨砺，专注于创造突破常规的视觉体验
+                用设计语言重新定义品牌价值
+            </p>
+            <div class="hero-cta">
+                <a href="#portfolio" class="btn btn-primary"><span>探索作品</span></a>
+                <a href="#contact" class="btn btn-outline">开始对话</a>
+            </div>
+        </div>
+        <div class="hero-visual"></div>
+        <div class="decoration-line" style="top: 20%; left: 50%;"></div>
+        <div class="decoration-dot" style="top: 40%; right: 30%;"></div>
+    </section>
+
+    <!-- 关于部分 -->
+    <section class="about" id="about">
+        <div class="about-container">
+            <div class="about-image">
+                <div class="decoration-dot" style="top: -10px; left: -10px;"></div>
+                <div class="decoration-dot" style="bottom: -10px; right: -10px;"></div>
+            </div>
+            <div class="about-content">
+                <div class="section-label">关于设计理念</div>
+                <h2 class="section-title">设计不止于美<br>更在于思考</h2>
+                <p class="about-text">
+                    作为一名视觉设计师，我相信真正的设计力量来自于对问题本质的理解。
+                    每一个项目都是一次探索，每一次创作都是对边界的挑战。
+                    通过设计，我们不仅创造美，更创造价值与意义。
+                </p>
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">10+</div>
+                        <div class="stat-label">设计经验</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">200+</div>
+                        <div class="stat-label">创意项目</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">品牌服务</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 作品集 -->
+    <section class="portfolio" id="portfolio">
+        <div class="portfolio-container">
+            <div class="portfolio-header">
+                <div class="portfolio-header-content">
+                    <div class="section-label">精选作品</div>
+                    <h2 class="section-title">创意的<br>无限可能</h2>
+                </div>
+                <div class="portfolio-filter">
+                    <button class="filter-btn active">全部</button>
+                    <button class="filter-btn">品牌</button>
+                    <button class="filter-btn">界面</button>
+                    <button class="filter-btn">动效</button>
+                </div>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <div class="portfolio-info">
+                        <h3 class="portfolio-title">未来品牌重塑</h3>
+                        <p class="portfolio-category">品牌设计</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-info">
+                        <h3 class="portfolio-title">数字化体验</h3>
+                        <p class="portfolio-category">UI设计</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-info">
+                        <h3 class="portfolio-title">动态视觉</h3>
+                        <p class="portfolio-category">动效设计</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-info">
+                        <h3 class="portfolio-title">空间艺术</h3>
+                        <p class="portfolio-category">装置设计</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-info">
+                        <h3 class="portfolio-title">创意海报</h3>
+                        <p class="portfolio-category">平面设计</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-info">
+                        <h3 class="portfolio-title">品牌系统</h3>
+                        <p class="portfolio-category">视觉识别</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 技能部分 -->
+    <section class="skills" id="skills">
+        <div class="skills-container">
+            <div class="skills-header">
+                <div class="section-label">专业技能</div>
+                <h2 class="section-title">工具精通<br>思维创新</h2>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3 class="skill-name">品牌策略</h3>
+                    <p class="skill-level">专家级</p>
+                    <div class="skill-progress">
+                        <div class="skill-progress-bar" style="width: 95%"></div>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <h3 class="skill-name">UI/UX</h3>
+                    <p class="skill-level">专家级</p>
+                    <div class="skill-progress">
+                        <div class="skill-progress-bar" style="width: 90%"></div>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <h3 class="skill-name">动效设计</h3>
+                    <p class="skill-level">高级</p>
+                    <div class="skill-progress">
+                        <div class="skill-progress-bar" style="width: 85%"></div>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <h3 class="skill-name">3D设计</h3>
+                    <p class="skill-level">高级</p>
+                    <div class="skill-progress">
+                        <div class="skill-progress-bar" style="width: 80%"></div>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <h3 class="skill-name">创意思维</h3>
+                    <p class="skill-level">专家级</p>
+                    <div class="skill-progress">
+                        <div class="skill-progress-bar" style="width: 95%"></div>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <h3 class="skill-name">Photoshop</h3>
+                    <p class="skill-level">专家级</p>
+                    <div class="skill-progress">
+                        <div class="skill-progress-bar" style="width: 95%"></div>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <h3 class="skill-name">Illustrator</h3>
+                    <p class="skill-level">专家级</p>
+                    <div class="skill-progress">
+                        <div class="skill-progress-bar" style="width: 90%"></div>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <h3 class="skill-name">Figma</h3>
+                    <p class="skill-level">专家级</p>
+                    <div class="skill-progress">
+                        <div class="skill-progress-bar" style="width: 95%"></div>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <h3 class="skill-name">Cinema 4D</h3>
+                    <p class="skill-level">高级</p>
+                    <div class="skill-progress">
+                        <div class="skill-progress-bar" style="width: 80%"></div>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <h3 class="skill-name">After Effects</h3>
+                    <p class="skill-level">高级</p>
+                    <div class="skill-progress">
+                        <div class="skill-progress-bar" style="width: 85%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系部分 -->
+    <section class="contact" id="contact">
+        <div class="contact-info">
+            <h2 class="contact-title">
+                <span class="contact-title-line1">开始</span>
+                <span class="contact-title-line2">对话</span>
+            </h2>
+            <p class="contact-text">
+                让我们一起探索设计的无限可能
+                将创意转化为现实
+            </p>
+            <div class="contact-details">
+                <div class="contact-item">
+                    <i data-lucide="mail"></i>
+                    <span>design@creative.com</span>
+                </div>
+                <div class="contact-item">
+                    <i data-lucide="phone"></i>
+                    <span>+86 138 0000 0000</span>
+                </div>
+                <div class="contact-item">
+                    <i data-lucide="map-pin"></i>
+                    <span>上海 · 中国</span>
+                </div>
+            </div>
+        </div>
+        <div class="contact-form-section">
+            <form class="contact-form">
+                <div class="form-group">
+                    <label class="form-label">您的名字</label>
+                    <input type="text" class="form-input" placeholder="如何称呼您">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">联系邮箱</label>
+                    <input type="email" class="form-input" placeholder="your@email.com">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">项目描述</label>
+                    <textarea class="form-input" placeholder="告诉我您的想法..."></textarea>
+                </div>
+                <button type="submit" class="btn-submit"><span>发送消息</span></button>
+            </form>
+        </div>
+        <div class="decoration-line" style="top: 50%; left: 40%; transform: rotate(45deg);"></div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">© 2024 视觉设计师作品集. 保留所有权利.</p>
+            <div class="footer-links">
+                <a href="#" class="footer-link">Behance</a>
+                <a href="#" class="footer-link">Dribbble</a>
+                <a href="#" class="footer-link">Instagram</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 初始化 Lucide 图标
+        lucide.createIcons();
+
+        // 导航栏滚动效果
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 作品过滤
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            });
+        });
+
+        // 滚动动画
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    
+                    // 技能进度条动画
+                    if (entry.target.classList.contains('skills')) {
+                        const progressBars = entry.target.querySelectorAll('.skill-progress-bar');
+                        progressBars.forEach(bar => {
+                            const width = bar.style.width;
+                            bar.style.width = '0';
+                            setTimeout(() => {
+                                bar.style.width = width;
+                            }, 100);
+                        });
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // 观察所有区域
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+            observer.observe(section);
+        });
+
+        // 表单提交
+        const contactForm = document.querySelector('.contact-form');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('感谢您的留言！我会尽快与您联系。');
+        });
+
+        // 鼠标视差效果
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX / window.innerWidth - 0.5;
+            const y = e.clientY / window.innerHeight - 0.5;
+            
+            document.querySelectorAll('.decoration-dot').forEach(dot => {
+                dot.style.transform = `translate(${x * 20}px, ${y * 20}px)`;
+            });
+            
+            document.querySelectorAll('.decoration-line').forEach(line => {
+                line.style.transform = `translate(${x * 10}px, ${y * 10}px) rotate(45deg)`;
+            });
+        });
+    </script>
+</body>
+</html>

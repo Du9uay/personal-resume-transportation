@@ -27,7 +27,12 @@
       "Bash([ -f \"echarts-background-map.js\" ])",
       "Bash([ -f \"worldZH.json\" ])",
       "Bash([ -d \"public\" ])",
-      "Bash(mkdir:*)"
+      "Bash(mkdir:*)",
+      "Bash(identify:*)",
+      "Bash(convert:*)",
+      "Bash(git revert:*)",
+      "Bash(open index-designer.html)",
+      "Bash(git remote set-url:*)"
     ],
     "deny": []
   }
