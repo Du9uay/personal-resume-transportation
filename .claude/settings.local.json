@@ -2,7 +2,16 @@
   "permissions": {
     "allow": [
       "Bash(find:*)",
-      "Bash(open index.html)"
+      "Bash(open index.html)",
+      "Bash(git add:*)",
+      "Bash(git push:*)",
+      "Bash(python3:*)",
+      "Bash(open http://localhost:8080)",
+      "Bash(git commit:*)",
+      "Bash(gh repo view:*)",
+      "Bash(open:*)",
+      "mcp__serena__read_file",
+      "Bash(git remote set-url:*)"
     ],
     "deny": [],
     "ask": []
